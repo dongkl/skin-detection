@@ -41,7 +41,13 @@ while True:
 	# resize the frame, convert it to the HSV color space,
 	# and determine the HSV pixel intensities that fall into
 	# the speicifed upper and lower boundaries
-	frame = imutils.resize(frame, width = 400)
+	frame = imutils.resize(frame, width=400)
+
+	# the image is horizontally mirror'd for some reason,
+	# so flip it here to bring it back to normal
+	#  (flipCode 1 for horizontal, 0 for vertical)
+	frame = cv2.flip(frame, flipCode=1)
+
 	converted = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 	skinMask = cv2.inRange(converted, lower, upper)
 
